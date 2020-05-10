@@ -14,7 +14,7 @@ class UserController {
 
     const nextPage = parsed.next?.since
 
-    res.setHeader('X-Next-Page', nextPage)
+    res.header('X-Next-Page', nextPage)
 
     return res.json(users)
   }

@@ -14,7 +14,9 @@ class App {
 
   private middlewares (): void {
     this.express.use(express.json())
-    this.express.use(cors())
+    this.express.use(cors({
+      exposedHeaders: ['X-Next-Page']
+    }))
   }
 
   private routes (): void {
