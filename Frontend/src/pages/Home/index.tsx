@@ -1,11 +1,19 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Container, Table } from '../components';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FiSearch } from 'react-icons/fi';
 
+import { Container, Table } from '../components';
 import api from '../../services/api';
 import './styles.css';
 
 const Home: React.FC = (): React.ReactElement => {
+  const renderButton = ({ value }: { value: string }) => (
+    <Link className="button" to={`/detail/${value}`}>
+      <FiSearch size={15} />
+    </Link>
+  );
+
   const columns = useMemo(
     () => [
       {
@@ -15,6 +23,11 @@ const Home: React.FC = (): React.ReactElement => {
       {
         Header: 'Login',
         accessor: 'login',
+      },
+      {
+        Header: 'Detail',
+        accessor: (d) => d.login,
+        Cell: (props) => renderButton(props),
       },
     ],
     []
@@ -47,7 +60,6 @@ const Home: React.FC = (): React.ReactElement => {
   };
 
   const fetchData = ({ pageIndex }) => {
-    console.log(pages, pages[pageIndex]);
     if (pageIndex < pages.length) getUsers(pages[pageIndex]);
   };
 

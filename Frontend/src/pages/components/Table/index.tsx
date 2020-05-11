@@ -28,7 +28,7 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
     page,
     nextPage,
     previousPage,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable(
     {
       columns,
@@ -40,7 +40,7 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
   );
 
   useEffect(() => {
-    fetchData({ pageIndex, pageSize });
+    fetchData({ pageIndex });
   }, [pageIndex]);
 
   return (

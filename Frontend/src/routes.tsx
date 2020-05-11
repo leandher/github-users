@@ -9,7 +9,7 @@ const Routes: React.FC = () => {
     <BrowserRouter>
       <Switch>
       <Route path="/home" component={Home} />
-      <Route path="/detail" component={Detail} />
+      <Route path="/detail/:login" component={Detail} />
 
       <Route path="/**">
         <Redirect to="/home" />
