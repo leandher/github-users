@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react';
 import { usePagination, useTable, Column } from 'react-table';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import {
+  Table as MaUTable,
+  TableBody,
+  TableHead,
+  TableCell,
+  TableRow,
+} from '@material-ui/core';
+
 import './styles.css';
 
 interface TableProps {
@@ -18,8 +26,6 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
     headerGroups,
     prepareRow,
     page,
-    canPreviousPage,
-    canNextPage,
     nextPage,
     previousPage,
     state: { pageIndex, pageSize },
@@ -35,48 +41,51 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
 
   useEffect(() => {
     fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
+  }, [pageIndex]);
 
   return (
     <div className="table-container">
-      <table {...getTableProps()}>
-        <thead>
+      <MaUTable stickyHeader aria-label="sticky table" {...getTableProps()}>
+        <TableHead>
           {headerGroups.map((headerGroup) => (
-            <tr
+            <TableRow
               {...headerGroup.getHeaderGroupProps()}
               key={String(headerGroup.id)}
             >
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={String(column.id)}>
+                <TableCell {...column.getHeaderProps()} key={String(column.id)}>
                   <span>{column.render('Header')}</span>
-                </th>
+                </TableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
+        </TableHead>
+        <TableBody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} key={String(row.id)}>
+              <TableRow {...row.getRowProps()} key={String(row.id)}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()} key={String(cell.column?.id)}>
+                    <TableCell
+                      {...cell.getCellProps()}
+                      key={String(cell.column?.id)}
+                    >
                       <span>{cell.render('Cell')}</span>
-                    </td>
+                    </TableCell>
                   );
                 })}
-              </tr>
+              </TableRow>
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </MaUTable>
       <div className="pagination">
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <button onClick={() => previousPage()}>
           <FiChevronLeft size={16} color="#52575C" />
         </button>
 
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button onClick={() => nextPage()}>
           <FiChevronRight size={16} color="#52575C" />
         </button>
       </div>
