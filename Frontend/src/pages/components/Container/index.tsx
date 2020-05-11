@@ -18,7 +18,7 @@ const Container: React.FC<ContainerProps> = ({
     <div className="container">
       <Spinner loading={loading} />
       <div className="header">
-        <FiGithub size={100} />
+        <FiGithub size={90} />
         <div className="headerText">{headerText}</div>
       </div>
       {children}

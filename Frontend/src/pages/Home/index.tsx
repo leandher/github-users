@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FiSearch } from 'react-icons/fi';
 
-import { Container, Table } from '../components';
 import api from '../../services/api';
+import { Container, Table } from '../components';
+
 import './styles.css';
 
 const Home: React.FC = (): React.ReactElement => {
