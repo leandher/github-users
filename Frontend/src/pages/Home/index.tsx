@@ -4,16 +4,15 @@ import { toast } from 'react-toastify';
 import { FiSearch } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { User } from '../../types/user';
 import { Container, Table } from '../components';
 
 import './styles.css';
 
 const Home: React.FC = (): React.ReactElement => {
-  const renderButton = ({ value }: { value: string }) => (
-    <Link className="button" to={`/detail/${value}`}>
-      <FiSearch size={15} />
-    </Link>
-  );
+  const [users, setUsers] = useState([] as User[]);
+  const [loading, setLoading] = useState(false);
+  const [pages, setPages] = useState([0]);
 
   const columns = useMemo(
     () => [
@@ -34,9 +33,11 @@ const Home: React.FC = (): React.ReactElement => {
     []
   );
 
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [pages, setPages] = useState([0]);
+  const renderButton = ({ value }: { value: string }) => (
+    <Link className="button" to={`/detail/${value}`}>
+      <FiSearch size={15} />
+    </Link>
+  );
 
   const getUsers = async (page: number = 0) => {
     if (loading) return;
@@ -70,7 +71,7 @@ const Home: React.FC = (): React.ReactElement => {
 
   return (
     <Container loading={loading} headerText="Users">
-      <Table columns={columns} data={users} fetchData={fetchData} />
+      <Table pagination columns={columns} data={users} fetchData={fetchData} />
     </Container>
   );
 };

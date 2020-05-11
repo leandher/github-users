@@ -14,11 +14,12 @@ import './styles.css';
 interface TableProps {
   columns: Column<object>[];
   data: any[];
-  fetchData: Function;
+  fetchData?: Function;
+  pagination?: boolean;
 }
 
 const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
-  const { columns, data, fetchData } = props;
+  const { columns, data, fetchData, pagination } = props;
 
   const {
     getTableProps,
@@ -40,7 +41,9 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
   );
 
   useEffect(() => {
-    fetchData({ pageIndex });
+    if (pagination && fetchData) {
+      fetchData({ pageIndex });
+    }
   }, [pageIndex]);
 
   return (
@@ -80,15 +83,17 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
           })}
         </TableBody>
       </MaUTable>
-      <div className="pagination">
-        <button onClick={() => previousPage()}>
-          <FiChevronLeft size={16} color="#52575C" />
-        </button>
+      {pagination && (
+        <div className="pagination">
+          <button onClick={() => previousPage()}>
+            <FiChevronLeft size={16} color="#52575C" />
+          </button>
 
-        <button onClick={() => nextPage()}>
-          <FiChevronRight size={16} color="#52575C" />
-        </button>
-      </div>
+          <button onClick={() => nextPage()}>
+            <FiChevronRight size={16} color="#52575C" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
