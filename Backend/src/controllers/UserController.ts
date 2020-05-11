@@ -10,11 +10,8 @@ class UserController {
       const response = await api.get(`/users?since=${since}`)
       const {
         data,
-        headers: { link },
-        status
+        headers: { link }
       } = response
-
-      if (status !== 200) return res.status(status).send(data)
 
       const users = data
 
@@ -26,7 +23,7 @@ class UserController {
 
       return res.json(users)
     } catch (error) {
-      return res.status(500).send(error)
+      return res.status(error?.response?.status || 400).json(error)
     }
   }
 
@@ -34,14 +31,12 @@ class UserController {
     try {
       const { username } = req.params
       const response = await api.get(`/users/${username}`)
-      const { status, data } = response
-
-      if (status !== 200) return res.send(data).status(status)
+      const { data } = response
       const details = data
 
       return res.json(details)
     } catch (error) {
-      return res.send(error).status(500)
+      return res.status(error?.response?.status || 400).json(error)
     }
   }
 
@@ -49,13 +44,13 @@ class UserController {
     try {
       const { username } = req.params
       const response = await api.get(`/users/${username}/repos`)
-      const { status, data } = response
-      if (status !== 200) return res.status(status).send(data)
-      const repos = response.data
+      const { data } = response
+
+      const repos = data
 
       return res.json(repos)
     } catch (error) {
-      return res.send(error).status(500)
+      return res.status(error?.response?.status || 400).json(error)
     }
   }
 }

@@ -8,5 +8,5 @@ export interface User {
 export interface Repos {
   id: string;
   name: string;
-  url: string;
+  html_url: string;
 }

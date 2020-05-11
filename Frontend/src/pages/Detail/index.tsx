@@ -26,7 +26,7 @@ const Detail: React.FC = (): React.ReactElement => {
       },
       {
         Header: 'Url',
-        accessor: 'url',
+        accessor: 'html_url',
         Cell: ({value}) => <a href={value} target="_blank">{value}</a>
       },
     ],
