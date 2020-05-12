@@ -11,6 +11,7 @@
 <p align="center">
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#white_check_mark-live-demo">Live Demo</a>
 </p>
 
 ## :rocket: Technologies
@@ -74,6 +75,25 @@ $ yarn install
 # Run the app
 $ yarn start
 ```
+
+## :white_check_mark: Live Demo
+
+Frontend: https://repositories-git-app.web.app/
+
+Backend: https://github-users-list-repos.herokuapp.com/
+  
+  - Endpoints:
+    - **GET - /api/users?since={number}**
+
+      This endpoint returns a list of GitHub users and the link for the next page.
+
+    - **GET - /api/users/:username/details**
+
+      This endpoint returns the details of a GitHub user.
+
+    - **GET - /api/users/:username/repos**
+
+      This endpoint returns a list with all user repositories
 ---
 
 Made by Leandher Bessa [Get in touch!](https://www.linkedin.com/in/leandher-bessa-65303b128)
