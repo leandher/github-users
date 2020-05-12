@@ -1,3 +1,4 @@
+/* global describe it expect */
 import request from 'supertest'
 import faker from 'faker'
 import app from '../../src/app'
