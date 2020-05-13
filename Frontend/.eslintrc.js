@@ -25,5 +25,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "react/jsx-no-target-blank": ["on", { "enforceDynamicLinks": "never" }]
     }
 };

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { FiSearch } from 'react-icons/fi';
 
 import api from '../../services/api';
+// eslint-disable-next-line no-unused-vars
 import { User } from '../../types/user';
 import { Container, Table } from '../components';
 

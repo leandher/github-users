@@ -13,7 +13,7 @@ import './styles.css';
 
 interface TableProps {
   columns: Column<object>[];
-  data: any[];
+  data: any[] | null | undefined;
   fetchData?: Function;
   pagination?: boolean;
 }
@@ -33,7 +33,7 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
   } = useTable(
     {
       columns,
-      data,
+      data: data || [],
       initialState: { pageIndex: 0 },
       manualPagination: true,
     },
@@ -96,6 +96,10 @@ const Table: React.FC<TableProps> = (props: TableProps): React.ReactElement => {
       )}
     </div>
   );
+};
+
+Table.defaultProps = {
+  data: [],
 };
 
 export default Table;

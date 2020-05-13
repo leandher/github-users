@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
+// eslint-disable-next-line no-unused-vars
 import { User, Repos } from '../../types/user';
 import { Container, Table } from '../components';
 
@@ -27,7 +28,8 @@ const Detail: React.FC = (): React.ReactElement => {
       {
         Header: 'Url',
         accessor: 'html_url',
-        Cell: ({value}) => <a href={value} target="_blank">{value}</a>
+        // eslint-disable-next-line react/display-name
+        Cell: ({value}: {value:string}) => <a target="_blank" href={value}>{value}</a>
       },
     ],
     []

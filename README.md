@@ -74,6 +74,9 @@ $ yarn install
 
 # Run the app
 $ yarn start
+
+# Run tests
+$ yarn test
 ```
 
 ## :white_check_mark: Live Demo

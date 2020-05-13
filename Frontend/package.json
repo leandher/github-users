@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --testPathIgnorePatterns=src/__tests__/utils/*",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,12 +44,24 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/faker": "^4.1.11",
     "@types/material-ui": "^0.21.7",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-table": "^7.0.17",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-react": "^7.19.0"
+    "eslint-plugin-react": "^7.19.0",
+    "faker": "^4.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**",
+      "!<rootDir>/node_modules/"
+    ]
   }
 }
